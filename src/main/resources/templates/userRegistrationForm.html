@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="utf-8"/>
+    <title>ユーザ作成</title>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap-theme.min.css}"/>
+</head>
+
+<body>
+	<div class="container">
+    	<h1>ユーザ作成</h1>
+    	<form th:action="@{/user/register}" th:object="${userRegistrationForm}" class="form-horizontal" method="post">
+                    <fieldset>
+                <legend>ユーザ登録</legend>
+                <div class="form-group" th:classappend="${#fields.hasErrors('username')}? 'has-error has-feedback'">
+                    <label for="username" class="col-sm-2 control-label">ユーザ名</label>
+
+                    <div class="col-sm-10">
+                        <input type="text" id="username" name="username" th:field="*{username}"
+                               class="form-control" value="ユーザ名"/>
+                        <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}"
+                              class="help-block">error!</span>
+                    </div>
+                </div>
+                <div class="form-group" th:classappend="${#fields.hasErrors('encodedPassword')}? 'has-error has-feedback'">
+                    <label for="encodedPassword" class="col-sm-2 control-label">パスワード</label>
+
+                    <div class="col-sm-10">
+                        <input type="text" id="encodedPassword" name="encodedPassword" th:field="*{encodedPassword}"
+                               class="form-control" value="パスワード"/>
+                        <span th:if="${#fields.hasErrors('encodedPassword')}" th:errors="*{encodedPassword}"
+                              class="help-block">error!</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-primary">登録</button>
+                    </div>
+                </div>
+            </fieldset>
+         </form>
+         <hr/>
+	</div>
+</body>
+</html>
